@@ -1,0 +1,27 @@
+.pageWrapper {
+  background-color: white;
+  padding: 10px;
+  height: 100%;
+}
+
+.footer {
+  @media screen and(max-width:768px) {
+    width: 97%;
+  }
+  border-top: 1px solid #f0f0f0;
+  background-color: white;
+  z-index: 9;
+  position: fixed;
+  bottom: 0;
+  padding: 20px;
+  width: 48%;
+  .footer-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .footer-list__item {
+      font-size: 30px;
+      color: white;
+    }
+  }
+}

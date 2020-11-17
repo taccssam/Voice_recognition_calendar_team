@@ -1,0 +1,19 @@
+@import "./today.scss";
+@import "./applayout.scss";
+@import "./goal.scss";
+@import "./reset.scss";
+@import "./user.scss";
+body {
+  font-family: -apple-system, Nexon, sans-serif;
+  padding: 10px;
+  background-color: #f0f0f0;
+}
+
+@font-face {
+  font-family: "Nexon";
+  src: url("../../public/fonts/NEXON\ Lv2\ Gothic.ttf") format("truetype");
+}
+
+.ant-row {
+  height: 100%;
+}

@@ -1,0 +1,12 @@
+.user-profile {
+  display: flex;
+  padding: 10px;
+  .user-profile__left {
+    margin-right: 10px;
+  }
+  .user-profile__right {
+    .user-profile__name {
+      margin-bottom: 10px;
+    }
+  }
+}
