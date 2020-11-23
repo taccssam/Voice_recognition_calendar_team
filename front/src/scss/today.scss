@@ -1,0 +1,42 @@
+.todosWrapper {
+  padding: 5px;
+}
+
+.checkBtn {
+  font-size: 10px;
+}
+
+.todoItemWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  .textBox {
+    margin-left: 10px;
+    height: 65px;
+    width: 100%;
+    display: flex;
+    border-radius: 15px;
+    .textBox__imo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      font-size: 23px;
+    }
+    .textBox__text {
+      font-size: 15px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+    }
+    .textBox__remove {
+      display: flex;
+      align-items: center;
+      font-size: 20px;
+      text-align: center;
+      padding-right: 10px;
+    }
+  }
+}
