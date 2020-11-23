@@ -37,12 +37,12 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // 쿠키와 세션
-app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use(cookieParser("hi"));
 app.use(
   session({
     saveUninitialized: false,
     resave: false,
-    secret: process.env.COOKIE_SECRET, //시크릿 키를 기반으로 쿠키 생성
+    secret: "hi", //시크릿 키를 기반으로 쿠키 생성
   })
 );
 // passport 사용 미들웨어
