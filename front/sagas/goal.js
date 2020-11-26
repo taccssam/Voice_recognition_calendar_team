@@ -10,7 +10,29 @@ import {
   GOAL_CHECK_FAILURE,
   GOAL_CHECK_REQUEST,
   GOAL_CHECK_SUCCESS,
+  REMOVE_GOAL_FAILURE,
+  REMOVE_GOAL_REQUEST,
+  REMOVE_GOAL_SUCCESS,
 } from "../reducers/goal";
+
+function removeGoalAPI(data) {
+  return axios.delete(`/goal/${data}`);
+}
+
+function* removeGoal(action) {
+  try {
+    const result = yield call(removeGoalAPI, action.data);
+    yield put({
+      type: REMOVE_GOAL_SUCCESS,
+      data: result.data,
+    });
+  } catch (err) {
+    yield put({
+      type: REMOVE_GOAL_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
 
 function addGoalAPI(data) {
   //제너레이터 x
@@ -81,6 +103,15 @@ function* watchGoalCheck() {
   yield takeLatest(GOAL_CHECK_REQUEST, goalCheck);
 }
 
+function* watchRemoveGoal() {
+  yield takeLatest(REMOVE_GOAL_REQUEST, removeGoal);
+}
+
 export default function* goalSaga() {
-  yield all([fork(watchAddGoal), fork(watchLoadGoal), fork(watchGoalCheck)]);
+  yield all([
+    fork(watchAddGoal),
+    fork(watchLoadGoal),
+    fork(watchGoalCheck),
+    fork(watchRemoveGoal),
+  ]);
 }

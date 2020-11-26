@@ -44,17 +44,7 @@ const LoginForm = () => {
 
   const onChangeGoalDate = useCallback((dates, dateStrings) => {
     if (dates != null) {
-      console.log("From: ", dates[0], ", to: ", dates[1]);
-      console.log("From: ", dateStrings[0], ", to: ", dateStrings[1]);
-      console.log(dates[0].format("YYYYMMDD"));
-      console.log(dates[1].format("YYYYMMDD"));
-      console.log(
-        "일 차이 : ",
-        moment.duration(dates[1].diff(dates[0])).asDays()
-      );
-
       setEverydayCount(moment.duration(dates[1].diff(dates[0])).asDays());
-      console.log(everydayCount);
       setStartLine(dates[0].format("YYYYMMDD"));
       setEndLine(dates[1].format("YYYYMMDD"));
     }
@@ -69,8 +59,6 @@ const LoginForm = () => {
   }, []);
 
   const onSubmitForm = useCallback(() => {
-    console.log(goalTitle, checkTotal, startLine, endLine, everydayCount);
-
     if (checked) {
       dispatch({
         type: ADD_GOAL_REQUEST,

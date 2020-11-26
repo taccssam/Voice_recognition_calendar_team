@@ -82,11 +82,13 @@ function loadMyInfoAPI() {
 
 function* loadMyInfo(action) {
   try {
+    
     const result = yield call(loadMyInfoAPI);
     yield put({
       type: LOAD_MY_INFO_SUCCESS,
       data: result.data,
     });
+
   } catch (err) {
     yield put({
       type: LOAD_MY_INFO_FAILURE,

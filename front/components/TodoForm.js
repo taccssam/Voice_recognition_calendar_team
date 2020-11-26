@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { Form, Input, Button, DatePicker } from "antd";
+import { Form, Input, Button, DatePicker, message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
+import Router from "next/router";
 import {
   addPostRequestAction,
   LOAD_POST_REQUEST,
@@ -11,7 +12,9 @@ import moment from "moment";
 import wrapper from "../store/configureStore";
 
 const TodoForm = () => {
-  const { addPostDone, id, addPostError } = useSelector((state) => state.user);
+  const { addPostDone, id, addPostError, me } = useSelector(
+    (state) => state.user
+  );
   const [dos, setDos] = useState("");
   const [date, setDate] = useState(moment());
   const dispatch = useDispatch();
@@ -34,7 +37,13 @@ const TodoForm = () => {
     setDate(value);
   });
   const onSubmit = useCallback(() => {
-    dispatch(addPostRequestAction({ content: dos, date: date, UserId: id }));
+    if (!me) {
+      message.error("로그인이 필요합니다.");
+      Router.replace("/user");
+    } else {
+      message.success("작성되었습니다.");
+      dispatch(addPostRequestAction({ content: dos, date: date, UserId: id }));
+    }
   }, [dos, date]);
 
   return (

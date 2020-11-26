@@ -9,7 +9,7 @@ export const todoCall = (te, iscom) => {
     type: LOAD_DATE_POST_REQUEST,
     data: TODOS_LS,
   };
-
+  console.log(data.data);
   return data;
 
   // let loadedToDos = localStorage.getItem(TODOS_LS);

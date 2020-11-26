@@ -14,6 +14,9 @@ export const initialState = {
   goalCheckLoading: false,
   goalCheckDone: false,
   goalCheckError: null,
+  removeGoalLoading: false,
+  removeGoalError: false,
+  removeGoalDone: false,
 };
 
 export const ADD_GOAL_REQUEST = "ADD_GOAL_REQUEST";
@@ -28,9 +31,25 @@ export const GOAL_CHECK_REQUEST = "GOAL_CHECK_REQUEST";
 export const GOAL_CHECK_SUCCESS = "GOAL_CHECK_SUCCESS";
 export const GOAL_CHECK_FAILURE = "GOAL_CHECK_FAILURE";
 
+export const REMOVE_GOAL_REQUEST = "REMOVE_GOAL_REQUEST";
+export const REMOVE_GOAL_SUCCESS = "REMOVE_GOAL_SUCCESS";
+export const REMOVE_GOAL_FAILURE = "REMOVE_GOAL_FAILURE";
+
 const reducer = (state = initialState, action) => {
   return produce(state, (draft) => {
     switch (action.type) {
+      case REMOVE_GOAL_REQUEST:
+        draft.removeGoalLoading = true;
+        break;
+      case REMOVE_GOAL_SUCCESS:
+        draft.removeGoalLoading = false;
+        draft.removeGoalDone = true;
+        draft.goals = draft.goals.filter((v) => v.id !== action.data.GoalId);
+        break;
+      case REMOVE_GOAL_FAILURE:
+        draft.removeGoalLoading = false;
+        draft.removeGoalError = action.error;
+        break;
       case GOAL_CHECK_REQUEST:
         draft.goalCheckLoading = true;
         break;

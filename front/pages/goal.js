@@ -15,11 +15,16 @@ const { Panel } = Collapse;
 
 const Goal = () => {
   const dispatch = useDispatch();
+  const { me } = useSelector((state) => state.user);
   const { goals, loadGoalDone, addGoalDone, goalCheckDone } = useSelector(
     (state) => state.goal
   );
 
   useEffect(() => {
+    // if (!me) {
+    //   message.error("로그인이 필요합니다");
+    //   Router.replace("/user");
+    // }
     dispatch({
       type: LOAD_GOAL_REQUEST,
     });

@@ -72,7 +72,6 @@ const signup = () => {
   }, [password, passwordCheck, term]);
   return (
     <AppLayout>
-      <HEAD>회원가입 | 노드버드</HEAD>
       <Form onFinish={onSubmit}>
         <div>
           <label type="email" htmlFor="user-email">

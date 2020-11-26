@@ -1,17 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 // import { initMic } from "../Speech/micSet";
 import Link from "next/link";
-import { Menu, Col, Row, Modal } from "antd";
+import { Menu, Col, Row, Modal, message } from "antd";
 import { HomeOutlined, AudioOutlined, HeartOutlined } from "@ant-design/icons";
 import LoginForm from "./LoginForm";
 import Today from "./Today";
 import { useSelector } from "react-redux";
 import UserProfile from "./UserProfile";
 import Footer from "../components/Footer";
+import Router from "next/router";
 
 const AppLayout = ({ children }) => {
   const { me } = useSelector((state) => state.user);
+
+  const onClickError = useCallback(() => {
+    if (!me) {
+      message.error("로그인이 필요합니다!");
+      Router.replace("/user");
+    }
+  }, []);
 
   useEffect(() => {}, []);
   return (
@@ -28,13 +36,13 @@ const AppLayout = ({ children }) => {
                   <a>Todo</a>
                 </Link>
               </Menu.Item>
-              <Menu.Item>
-                <Link href="/month">
+              <Menu.Item onClick={onClickError}>
+                <Link href={me ? "/month" : "/user"}>
                   <a>Month</a>
                 </Link>
               </Menu.Item>
-              <Menu.Item>
-                <Link href="/goal">
+              <Menu.Item onClick={onClickError}>
+                <Link href={me ? "/goal" : "/user"}>
                   <a>Goal</a>
                 </Link>
               </Menu.Item>
